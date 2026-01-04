@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- fonts & icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- React & Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+
+    :root {
+      --bg-light: #f8f9fa;
+      --bg-dark: #0f172a;
+      --card-light: #ffffff;
+      --card-dark: #1e293b;
+      --text-light: #1f2937;
+      --text-dark: #e5e7eb;
+      --primary: #3b82f6;
+      --secondary: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body 
+    {
+      font-family: 'Inter', sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    body.light 
+    {
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--primary-color);
+    }
+    .btn 
+    {
+        display: inline-block;
+        background-color: royalblue;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: inherit;
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      z-index: 1000;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .toggle {
+      cursor: pointer;
+      font-size: 1.3rem;
+      margin-left: 20px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-style: oblique;
+      color: dodgerblue;
+    }
+
+    .hero img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+    }
+
+    .button {
+    display: inline-block;
+    background-color: var(--primary);
+    color:whitesmoke;
+    padding: 1rem;
+    border-radius: .5rem;
+    font-weight: var(--font-medium);
+    }
+
+    .button:hover {
+    background-color: blue;
+    }
+
+    .button__icon {
+    font-size: 1.25rem;
+    margin-left: var(--mb-0-5);
+    transition: .3s;
+    }
+
+    .button--white {
+    background-color: #111;
+    color: var(--first-color);
+    }
+
+    .button--white:hover {
+    background-color: #fff;
+    }
+
+    .button--flex {
+    display: inline-flex;
+    align-items: center;
+    }
+
+    .button--small {
+    padding: .75rem 1rem;
+    }
+
+    .button--link {
+    padding: 0;
+    background: transparent;
+    color: var(--first-color);
+    }
+
+    .button--link:hover {
+    background-color: transparent;
+    color: var(--first-color);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-light);
+      padding: 30px;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 1s ease;
+    }
+
+    body.dark .card {
+      background: var(--card-dark);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .about-bio h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .about-bio p {
+      line-height: 1.8;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .about-skills-scroll {
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-purple) transparent;
+    }
+
+    .about-skills-scroll::-webkit-scrollbar 
+    { 
+        width: 6px; 
+    }
+
+    .about-skills-scroll::-webkit-scrollbar-thumb { 
+      background: var(--accent-purple); 
+      border-radius: 10px; 
+    }
+
+    .skill-item {
+         margin-bottom: 22px; 
+    }
+
+    .skill-label 
+    { 
+        display: flex; align-items: center; gap: 12px; font-weight: 600; 
+    }
+
+    .progress-bg { 
+        height: 8px; background: #e2e8f0; border-radius: 10px; margin-top: 8px; 
+    }
+
+    .progress-fill {
+         height: 100%; background: var(--accent-purple); border-radius: 10px; 
+    }
+
+    @media (max-width: 768px) 
+    {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-skills-scroll {
+      max-height: 400px; 
+      overflow-y: auto;
+      padding-right: 15px;
+    }
+    
+    .about-skills-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .about-skills-scroll::-webkit-scrollbar-thumb {
+      background: #7c4dff;
+      border-radius: 10px;
+    }
+
+    .about-skills .skill-item {
+      margin-bottom: 25px;
+    }
+
+    .about-skills .progress-fill {
+      background: #7c4dff; 
+      box-shadow: 0 0 10px rgba(124, 77, 255, 0.3);
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .skills-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .skill-item {
+      margin-bottom: 30px;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .skill-label i {
+      font-size: 1.1rem;
+    }
+
+    .about-skills-scroll {
+      max-height: 450px;
+      overflow-y: auto;
+      padding-right: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: #7c4dff #f0f0f0;
+    }
+
+    .about-skills-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .about-skills-scroll::-webkit-scrollbar-thumb {
+      background: #7c4dff;
+      border-radius: 10px;
+    }
+
+    .skill-label img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .skill-percentage {
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .progress-bg {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    body.dark .progress-bg {
+      background: #334155;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 10px;
+      transition: width 1s ease-in-out;
+    }
+
+
+    .experience-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .experience-timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background: var(--secondary);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+      opacity: 0.3;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item.left { left: 0; text-align: right; }
+    .timeline-item.right { left: 50%; text-align: left; }
+
+    .timeline-icon {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: -20px;
+      background: var(--card-light);
+      border: 2px solid var(--secondary);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    body.dark .timeline-icon 
+    { 
+        background: var(--card-dark); 
+    }
+    .timeline-item.right .timeline-icon 
+    { 
+        left: -20px; 
+    }
+
+    .experience-card {
+      background: var(--card-light);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    body.dark .experience-card { background: var(--card-dark); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    .timeline-item.left .exp-header { flex-direction: row-reverse; }
+
+    @media (max-width: 768px) {
+      .experience-timeline::after { left: 31px; }
+      .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+      .timeline-item.right { left: 0%; }
+      .timeline-item.left { text-align: left; }
+      .timeline-item.left .timeline-icon, .timeline-item.right .timeline-icon { left: 11px; }
+      .timeline-item.left .exp-header { flex-direction: row; }
+    }
+
+    .contact-container 
+    {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .contact-info 
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-method 
+    {
+      background: var(--card-light);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: 0.3s;
+    }
+
+    body.dark .contact-method 
+    { 
+        background: var(--card-dark); 
+    }
+
+    .contact-method i 
+    {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .contact-form 
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-group 
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group input, .form-group textarea 
+    {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--secondary);
+      background: transparent;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    .contact-form button 
+    {
+      border: none;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) 
+    {
+      .contact-container { grid-template-columns: 1fr; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+
+    .wave 
+    {
+        animation-name: wave-animation;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
+        transform-origin: 70% 70%;
+        display: inline-block;
+    }
+
+    @keyframes wave-animation {
+    0% {
+        transform: rotate(0.0deg)
+    }
+
+    10% {
+        transform: rotate(14.0deg)
+    }
+
+    20% {
+        transform: rotate(-8.0deg)
+    }
+
+    30% {
+        transform: rotate(14.0deg)
+    }
+
+    40% {
+        transform: rotate(-4.0deg)
+    }
+
+    50% {
+        transform: rotate(10.0deg)
+    }
+
+    60% {
+        transform: rotate(0.0deg)
+    }
+
+    100% {
+        transform: rotate(0.0deg)
+    }
+    }
+
+  </style>
+</head>
+
+<body class="light">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      const [theme, setTheme] = React.useState(
+        localStorage.getItem("theme") || "light"
+      );
+
+      React.useEffect(() => {
+        document.body.className = theme;
+        localStorage.setItem("theme", theme);
+      }, [theme]);
+
+      return (
+        <>
+          <header>
+            <strong>Jue Jue</strong>
+            <nav>
+              <a href="#home">Home</a>
+              <a href="#about">About Me</a>
+              <a href="#experience">Experience</a>
+              <a href="#contact">Contact</a>
+              
+              <span
+                className="toggle"
+                onClick={() =>
+                  setTheme(theme === "light" ? "dark" : "light")
+                }
+              >
+                {theme === "light" ? "🌙" : "☀️"}
+              </span>
+            </nav>
+          </header>
+
+          <section className="hero">
+            <div>
+              <h1>Hello! <span class="wave">👋</span>, I'm <br/>
+              </h1>
+              <h2>Jue Jue Khine Win</h2>
+              <p>I'm a Software Developer</p>
+              <br/>
+              <div class="about__buttons">
+                    <a download="" href="#" class="button button--flex">
+                            Download CV   <i class="uil uil-download-alt button__icon"></i>
+                    </a>
+                </div>
+            </div>
+            <img src="jue.jpg" alt="Jue Jue Khine Win" />
+          </section>
+
+          <section id="about">
+            <div className="container">
+              <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '20px' }}>About Me</h2>
+              
+              <p style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 40px', color: 'var(--secondary)', lineHeight: '1.6', fontSize: '1.1rem' }}>
+                I am a final-year Computer Science student with a deep-rooted passion for software engineering and system design. 
+                I specialize in building efficient, scalable applications and am currently focused on bridging the gap between 
+                academic theory and professional software development.
+              </p>
+
+              <div className="about-grid">
+                <div className="about-bio">
+                  <h3 style={{ marginBottom: '15px', color: 'var(--primary)' }}>Academic & Professional Journey</h3>
+                  <p style={{ color: 'var(--secondary)', lineHeight: '1.8', marginBottom: '15px' }}>
+                    My journey in technology began with a curiosity about how complex systems work. Throughout my degree, 
+                    I have the fundamentals of data structures, algorithms, and software architecture, applying 
+                    them to various academic and personal projects.
+                  </p>
+                  <p style={{ color: 'var(--secondary)', lineHeight: '1.8' }}>
+                    As I approach graduation, I am eager to contribute my skills in Java, C#, and Full-Stack development 
+                    to a professional team. I am a motivated learner, dedicated to writing clean, maintainable code 
+                    and solving real-world problems through innovative technology.
+                  </p>
+                  <div style={{ marginTop: '20px' }}>
+                     <p><strong>Focus:</strong> Backend Development, System Design</p>
+                  </div>
+                </div>
+
+                <div className="about-skills">
+                  <div className="about-skills-scroll">
+                    {[
+                      { name: 'Java', percent: '95%', icon: 'fab fa-java', color: '#f89820' },
+                      { name: 'PHP', percent: '89%', icon: 'fab fa-php', color: '#777bb4' },
+                      { name: 'C#', percent: '95%', icon: 'fas fa-hashtag', color: '#800080' },
+                      { name: 'ASP.NET', percent: '95%', icon: 'fas fa-code', color: '#512bd4' },
+                      { name: 'Python', percent: '84%', icon: 'fab fa-python', color: '#00758f' },
+                      { name: 'Kotlin', percent: '60%', icon: 'fas fa-terminal', color: '#7f52ff' },
+                      { name: 'MySQL', percent: '82%', icon: 'fas fa-database', color: '#00758f' },
+                      { name: 'HTML', percent: '88%', icon: 'fab fa-html5', color: '#e34f26' },
+                      { name: 'CSS', percent: '88%', icon: 'fab fa-css3-alt', color: '#1572b6' },
+                      { name: 'JavaScript', percent: '84%', icon: 'fab fa-js', color: '#f7df1e' }
+                    ].map((skill, index) => (
+                      <div className="skill-item" key={index}>
+                        <div className="skill-info" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <span className="skill-label" style={{ fontWeight: '600', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <i className={skill.icon} style={{ color: skill.color, width: '20px', textAlign: 'center' }}></i>
+                            {skill.name}
+                          </span>
+                          <span className="skill-percentage">{skill.percent}</span>
+                        </div>
+                        <div className="progress-bg" style={{ height: '8px', background: '#e0e0e0', borderRadius: '10px' }}>
+                          <div className="progress-fill" style={{ width: skill.percent, height: '100%', borderRadius: '10px', background: '#7c4dff' }}></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="experience">
+            <h2>Project Experiences</h2>
+            <div className="experience-timeline">
+              
+              <div className="timeline-item right">
+                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
+                <div className="experience-card">
+                  <div className="exp-header">
+                    <span>Education Website</span>
+                    <span>2022 - 2023</span>
+                  </div>
+                  <h3> Education for Kids </h3>
+                  <p>
+                    Tech stack: HTML, CSS & JavaScript
+                  </p>                
+                </div>
+              </div>
+
+              <div className="timeline-item left">
+                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
+                <div className="experience-card">
+                  <div className="exp-header">
+                    <span>Fitness</span>
+                    <span>2022 - 2023</span>
+                  </div>
+                  <h3>Fitness Management System</h3>
+                  <p>Tech stack: J2EE & MySQL</p>
+                </div>
+              </div>
+
+              <div className="timeline-item right">
+                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
+                <div className="experience-card">
+                  <div className="exp-header">
+                    <span>UCSP</span>
+                    <span>2023 - 2024</span>
+                  </div>
+                  <h3>UCSP Website</h3>
+                  <p>Tech stack: PHP & MySQL</p>
+                </div>
+              </div>
+
+              <div className="timeline-item left">
+                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
+                <div className="experience-card">
+                  <div className="exp-header">
+                    <span>CU Canteen</span>
+                    <span>2023 - 2024</span>
+                  </div>
+                  <h3>Canteen Automation System</h3>
+                  <p>Tech stack: C# & ASP.NET</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          
+          <section id="contact" className="contact">
+            <h2>Get In Touch</h2>
+            <div className="contact-container">
+              
+              <div className="contact-info">
+                <h3>Let's talk about everything!</h3>
+                <p style={{ color: 'var(--secondary)', marginBottom: '20px' }}>
+                  Don't like forms? Send me an email or connect with me on social media.
+                </p>
+
+                <div className="contact-method">
+                  <i className="fas fa-envelope"></i>
+                  <div>
+                    <h4 style={{fontSize: '0.9rem', color: 'var(--secondary)'}}>Email Me</h4>
+                    <p>juejuekhinewin@gmail.com</p>
+                  </div>
+                </div>
+
+                <div className="contact-method">
+                  <i className="fab fa-linkedin"></i>
+                  <div>
+                    <h4 style={{fontSize: '0.9rem', color: 'var(--secondary)'}}>LinkedIn</h4>
+                    <p>https://www.linkedin.com/in/jue-jue-khine-win-237711238/</p>
+                    
+                  </div>
+                </div>
+
+                <div className="contact-method">
+                  <i className="fab fa-github"></i>
+                  <div>
+                    <h4 style={{fontSize: '0.9rem', color: 'var(--secondary)'}}>GitHub</h4>
+                    <p>https://github.com/juejuekhinewin</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Form */}
+              <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                <div className="form-group">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="Enter your name" required />
+                </div>
+                
+                <div className="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="youremail@example.com" required />
+                </div>
+
+                
+                <div className="form-group">
+                  <label>Message</label>
+                  <textarea rows="5" placeholder="Your message here..." required></textarea>
+                </div>
+
+                <button type="submit" className="button button--flex">
+                  Send Message <i className="fas fa-paper-plane button__icon"></i>
+                </button>
+              </form>
+              
+            </div>
+          </section>
+          <footer>
+            © 2026 Jue Jue Khine Win. All rights reserved.
+          </footer>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
