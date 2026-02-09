@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
 
   <!-- React & Babel -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -34,10 +36,35 @@
       padding: 0;
     }
 
-    body 
-    {
+    body {
       font-family: 'Inter', sans-serif;
-      transition: background 0.4s ease, color 0.4s ease;
+      font-size: 16px;
+      line-height: 1.7;
+      letter-spacing: 0.2px;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section titles */
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+    }
+
+    /* Paragraphs */
+    p {
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+
+    /* Small text */
+    small, .exp-header {
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
     }
 
     body.light 
@@ -55,15 +82,7 @@
       padding: 80px 8%;
     }
 
-    h1, h2, h3 {
-      font-weight: 700;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 50px;
-      font-size: 2.5rem;
-    }
+    
 
     a {
         text-decoration: none;
@@ -121,17 +140,16 @@
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      font-style: italic;
+      font-size: 1.4rem;
+      font-weight: 500;
       color: var(--secondary);
     }
 
     .hero h2 {
       font-size: 3.5rem;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
-      font-style: oblique;
-      color: dodgerblue;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 10px 0;
     }
 
     .hero img {
@@ -234,6 +252,16 @@
       color: var(--secondary);
       margin-bottom: 20px;
     }
+
+    .about-bio p {
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .about-bio h3 {
+      font-size: 1.6rem;
+    }
+
 
     .about-skills-scroll {
       max-height: 420px;
@@ -375,6 +403,15 @@
       background: var(--primary);
       border-radius: 10px;
       transition: width 1s ease-in-out;
+    }
+
+    .experience-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .experience-card p {
+      font-size: 0.95rem;
     }
 
 
@@ -551,6 +588,24 @@
       }
     }
 
+    @media print {
+  /* Hide UI elements in the PDF */
+  header, .about__buttons, .contact-form, footer, .toggle {
+    display: none !important;
+  }
+  
+  /* Reset colors for printing */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  section {
+    padding: 10px 0 !important;
+    page-break-inside: avoid;
+  }
+}
+
     @media (max-width: 768px) {
       .hero {
         flex-direction: column-reverse;
@@ -612,10 +667,15 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    
     function App() {
       const [theme, setTheme] = React.useState(
         localStorage.getItem("theme") || "light"
       );
+
+      const handlePrint = () => {
+      window.print(); 
+    };
 
       React.useEffect(() => {
         document.body.className = theme;
@@ -643,18 +703,18 @@
             </nav>
           </header>
 
-          <section className="hero">
+          <section className="hero" id="home">
             <div>
-              <h1>Hello! <span class="wave">👋</span>, I'm <br/>
-              </h1>
+              <h1>Hello! <span className="wave">👋</span>, I'm</h1>
               <h2>Jue Jue Khine Win</h2>
-              <p>I'm a Software Developer</p>
+              <p>Software Developer | Final Year CS Student</p>
               <br/>
-              <div class="about__buttons">
-                    <a href="#" class="button button--flex">
-                            Download CV   <i class="uil uil-download-alt button__icon"></i>
-                    </a>
-                </div>
+              <div className="about__buttons">
+                <a href="CV.pdf" download="Jue_Jue_Khine_Win_CV.pdf" class="button">
+                  Download CV <i class="uil uil-download-alt button__icon"></i>
+                </a>
+
+              </div>
             </div>
             <img src="jue.jpg" alt="Jue Jue Khine Win" />
           </section>
@@ -662,19 +722,28 @@
           <section id="about">
             <div className="container">
               <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '20px' }}>About Me</h2>
+              
+              <p style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 40px', color: 'var(--secondary)', lineHeight: '1.6', fontSize: '1.1rem' }}>
+                I am a final-year Computer Science student with a deep-rooted passion for software engineering and system design. 
+                I specialize in building efficient, scalable applications and am currently focused on bridging the gap between 
+                academic theory and professional software development.
+              </p>
 
               <div className="about-grid">
                 <div className="about-bio">
+                  <h3 style={{ marginBottom: '15px', color: 'var(--primary)' }}>Academic & Professional Journey</h3>
                   <p style={{ color: 'var(--secondary)', lineHeight: '1.8', marginBottom: '15px' }}>
-                    I‘m a final year Computer Science student specializing in software development 
-                    and aspiring Junior Software developer with a strong technical solution in Java , C# 
-                    and implemented website in PHP. Hand-on experience building web applications using ASP.NET 
-                    and with a growing foundation in Spring Boot.I’m a fast learner, currently bridging the gap between classroom theory 
-                    and industry-standard software engineering practices. 
+                    My journey in technology began with a curiosity about how complex systems work. Throughout my degree, 
+                    I have the fundamentals of data structures, algorithms, and software architecture, applying 
+                    them to various academic and personal projects.
                   </p>
-                 
+                  <p style={{ color: 'var(--secondary)', lineHeight: '1.8' }}>
+                    As I approach graduation, I am eager to contribute my skills in Java, C#, and Full-Stack development 
+                    to a professional team. I am a motivated learner, dedicated to writing clean, maintainable code 
+                    and solving real-world problems through innovative technology.
+                  </p>
                   <div style={{ marginTop: '20px' }}>
-                     <p><strong>Focus:</strong> Software Development and System Design</p>
+                     <p><strong>Focus:</strong> Software Development & Mobile Development</p>
                   </div>
                 </div>
 
@@ -831,7 +900,7 @@
             </div>
           </section>
           <footer>
-            © 2026 Jue Jue Khine Win.
+            © 2026 Jue Jue Khine Win. All rights reserved.
           </footer>
         </>
       );
@@ -841,5 +910,3 @@
   </script>
 </body>
 </html>
-
-
