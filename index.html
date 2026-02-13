@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-
   <!-- React & Babel -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -43,25 +42,21 @@
       letter-spacing: 0.2px;
     }
 
-    /* Headings */
     h1, h2, h3, h4 {
       font-family: 'Poppins', sans-serif;
       letter-spacing: 0.5px;
     }
 
-    /* Section titles */
     h2 {
       font-size: 2.4rem;
       margin-bottom: 40px;
     }
 
-    /* Paragraphs */
     p {
       font-size: 1rem;
       color: var(--secondary);
     }
 
-    /* Small text */
     small, .exp-header {
       font-size: 0.85rem;
       letter-spacing: 0.3px;
@@ -594,7 +589,6 @@
     display: none !important;
   }
   
-  /* Reset colors for printing */
   body {
     background: white !important;
     color: black !important;
@@ -667,7 +661,7 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    
+
     function App() {
       const [theme, setTheme] = React.useState(
         localStorage.getItem("theme") || "light"
@@ -707,10 +701,10 @@
             <div>
               <h1>Hello! <span className="wave">👋</span>, I'm</h1>
               <h2>Jue Jue Khine Win</h2>
-              <p>Software Developer | Final Year CS Student</p>
+              <p>Aspiring Software Developer | Final Year CS Student</p>
               <br/>
               <div className="about__buttons">
-                <a href="CV.pdf" download="Jue_Jue_Khine_Win_CV.pdf" class="button">
+                <a href=".pdf" download="Jue_Jue_Khine_Win_CV.pdf" class="button">
                   Download CV <i class="uil uil-download-alt button__icon"></i>
                 </a>
 
@@ -724,36 +718,36 @@
               <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '20px' }}>About Me</h2>
               
               <p style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 40px', color: 'var(--secondary)', lineHeight: '1.6', fontSize: '1.1rem' }}>
-                I am a final-year Computer Science student with a deep-rooted passion for software engineering and system design. 
-                I specialize in building efficient, scalable applications and am currently focused on bridging the gap between 
+                I am a final year Computer Science student with a deep-rooted passion for software engineering and full stack development. 
+                I specialized in building efficient, scalable applications and am currently focused on bridging the gap between 
                 academic theory and professional software development.
               </p>
 
               <div className="about-grid">
                 <div className="about-bio">
-                  <h3 style={{ marginBottom: '15px', color: 'var(--primary)' }}>Academic & Professional Journey</h3>
+                  <h3 style={{ marginBottom: '15px', color: 'var(--primary)' }}>Academic Journey</h3>
                   <p style={{ color: 'var(--secondary)', lineHeight: '1.8', marginBottom: '15px' }}>
-                    My journey in technology began with a curiosity about how complex systems work. Throughout my degree, 
-                    I have the fundamentals of data structures, algorithms, and software architecture, applying 
-                    them to various academic and personal projects.
+                    My academic knowledge has supported the development of web applications and desktop appliactions
+                    using Java, C#, ASP.NET, PHP, MySQL, Python, HTML, CSS, and JavaScript.
                   </p>
                   <p style={{ color: 'var(--secondary)', lineHeight: '1.8' }}>
-                    As I approach graduation, I am eager to contribute my skills in Java, C#, and Full-Stack development 
+                    As I approach graduation, I am eager to contribute my skills in Java, C# and software development 
                     to a professional team. I am a motivated learner, dedicated to writing clean, maintainable code 
                     and solving real-world problems through innovative technology.
                   </p>
                   <div style={{ marginTop: '20px' }}>
-                     <p><strong>Focus:</strong> Software Development & Mobile Development</p>
+                     <p><strong>Focus:</strong> Full-Stack Development, Software Engineering, and Scalable Application Design</p>
+
                   </div>
                 </div>
 
                 <div className="about-skills">
                   <div className="about-skills-scroll">
                     {[
-                      { name: 'Java', percent: '95%', icon: 'fab fa-java', color: '#f89820' },
-                      { name: 'PHP', percent: '89%', icon: 'fab fa-php', color: '#777bb4' },
-                      { name: 'C#', percent: '95%', icon: 'fas fa-hashtag', color: '#800080' },
-                      { name: 'ASP.NET', percent: '95%', icon: 'fas fa-code', color: '#512bd4' },
+                      { name: 'Java', percent: '92%', icon: 'fab fa-java', color: '#f89820' },
+                      { name: 'PHP', percent: '86%', icon: 'fab fa-php', color: '#777bb4' },
+                      { name: 'C#', percent: '92%', icon: 'fas fa-hashtag', color: '#800080' },
+                      { name: 'ASP.NET', percent: '92%', icon: 'fas fa-code', color: '#512bd4' },
                       { name: 'Python', percent: '84%', icon: 'fab fa-python', color: '#00758f' },
                       { name: 'Kotlin', percent: '60%', icon: 'fas fa-terminal', color: '#7f52ff' },
                       { name: 'MySQL', percent: '82%', icon: 'fas fa-database', color: '#00758f' },
@@ -793,8 +787,36 @@
                   </div>
                   <h3> Education for Kids </h3>
                   <p>
-                    Tech stack: HTML, CSS & JavaScript
-                  </p>                
+                    Used: HTML & CSS
+                  </p> 
+                  
+                  <img 
+                    src="img/home.png" 
+                    alt="Education for Kids Demo"
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginBottom: '10px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                    }}
+                  />
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <a 
+                      href="https://kidseducation-theta.vercel.app/" 
+                      target="_blank" 
+                      className="button button--small"
+                    >
+                      Live Demo
+                    </a>
+                    <a 
+                      href="https://github.com/juejuekhinewin/Kids-Education-" 
+                      target="_blank" 
+                      className="button button--small"
+                    >
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -806,23 +828,34 @@
                     <span>2022 - 2023</span>
                   </div>
                   <h3>Fitness Management System</h3>
-                  <p>Tech stack: J2EE & MySQL</p>
+                  <p>Used: J2EE & MySQL</p>
+
+                  <img 
+                    src="img/fitness.png" 
+                    alt="Fitness Demo"
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginBottom: '10px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                    }}
+                  />
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    
+                    <a 
+                      href="https://github.com/juejuekhinewin/FitnessManagementSystem" 
+                      target="_blank" 
+                      className="button button--small"
+                    >
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
+
 
               <div className="timeline-item right">
-                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
-                <div className="experience-card">
-                  <div className="exp-header">
-                    <span>UCSP</span>
-                    <span>2023 - 2024</span>
-                  </div>
-                  <h3>UCSP Website</h3>
-                  <p>Tech stack: PHP & MySQL</p>
-                </div>
-              </div>
-
-              <div className="timeline-item left">
                 <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
                 <div className="experience-card">
                   <div className="exp-header">
@@ -830,7 +863,64 @@
                     <span>2023 - 2024</span>
                   </div>
                   <h3>Canteen Automation System</h3>
-                  <p>Tech stack: C# & ASP.NET</p>
+                  <p>Used: C# & ASP.NET</p>
+
+                  <img 
+                    src="img/canteen.png" 
+                    alt="CU Canteen Demo"
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginBottom: '10px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                    }}
+                  />
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    
+                    <a 
+                      href="https://github.com/juejuekhinewin/CanteenAutomationSystem" 
+                      target="_blank" 
+                      className="button button--small"
+                    >
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="timeline-item left">
+                <div className="timeline-icon"><i className="fas fa-briefcase"></i></div>
+                <div className="experience-card">
+                  <div className="exp-header">
+                    <span>Library Management System</span>
+                    <span>2024 - 2025</span>
+                  </div>
+                  <h3>LMS</h3>
+                  <p>Used: Java GUI & MySQL</p>
+
+                  <img 
+                    src="img/library.png" 
+                    alt="LMS Demo"
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      marginBottom: '10px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                    }}
+                  />
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    
+                    <a 
+                      href="https://github.com/juejuekhinewin/Library_Management_System" 
+                      target="_blank" 
+                      className="button button--small"
+                    >
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -839,13 +929,14 @@
 
           
           <section id="contact" className="contact">
-            <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '20px' }}>Get In Tpuch</h2>
+            <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '20px' }}>Get In Touch</h2>
             <div className="contact-container">
               
               <div className="contact-info">
-                <h3>Let's talk about everything!</h3>
-                <p style={{ color: 'var(--secondary)', marginBottom: '20px' }}>
-                  Send me an email or connect with me on social media.
+                <h3>Let’s Connect!</h3>
+                <p style={{ color: 'var(--secondary)', marginBottom: '20px', lineHeight: '1.7' }}>
+                 I'm seeking for internship and entry-level software development opportunities. If you would like to discuss 
+                a project, collaboration, or career opportunity, feel free to reach out.
                 </p>
 
                 <div className="contact-method">
@@ -860,7 +951,11 @@
                   <i className="fab fa-linkedin"></i>
                   <div>
                     <h4 style={{fontSize: '0.9rem', color: 'var(--secondary)'}}>LinkedIn</h4>
-                    <p>https://www.linkedin.com/in/jue-jue-khine-win-237711238/</p>
+                    <p>
+                      <a href="https://www.linkedin.com/in/jue-jue-khine-win-237711238/" target="_blank">
+                        linkedin.com/in/jue-jue-khine-win
+                      </a>
+                    </p>
                     
                   </div>
                 </div>
@@ -869,12 +964,15 @@
                   <i className="fab fa-github"></i>
                   <div>
                     <h4 style={{fontSize: '0.9rem', color: 'var(--secondary)'}}>GitHub</h4>
-                    <p>https://github.com/juejuekhinewin</p>
+                    <p>
+                      <a href="https://github.com/juejuekhinewin" target="_blank">
+                        github.com/juejuekhinewin
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Right Side: Form */}
               <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
                 <div className="form-group">
                   <label>Full Name</label>
@@ -883,13 +981,13 @@
                 
                 <div className="form-group">
                   <label>Email Address</label>
-                  <input type="email" placeholder="youremail@example.com" required />
+                  <input type="email" placeholder="Enter your email" required />
                 </div>
 
                 
                 <div className="form-group">
                   <label>Message</label>
-                  <textarea rows="5" placeholder="Your message here..." required></textarea>
+                  <textarea rows="5" placeholder="Enter your message here..." required></textarea>
                 </div>
 
                 <button type="submit" className="button button--flex">
@@ -900,7 +998,7 @@
             </div>
           </section>
           <footer>
-            © 2026 Jue Jue Khine Win. All rights reserved.
+            © 2026 Jue Jue Khine Win
           </footer>
         </>
       );
@@ -910,4 +1008,3 @@
   </script>
 </body>
 </html>
-
